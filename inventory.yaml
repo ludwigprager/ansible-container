@@ -1,0 +1,31 @@
+all:
+  hosts:
+    desktop01:
+      docker_users: gandhi
+    d02:
+      docker_users: spinoza
+    l02:
+      docker_users: Josquin
+    l03:
+      docker_users: Newton
+    pi1:
+    pi2:
+    d03:
+
+  children:
+
+    # alle desktop-Rechner und Laptops
+    desktop:
+      hosts:
+        desktop01: {}
+        d02: {}
+
+    laptop:
+      hosts:
+        l02: {}
+        l03: {}
+
+    raspberry:
+      hosts:
+        pi1:
+        pi2:

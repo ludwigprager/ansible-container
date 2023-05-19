@@ -1,0 +1,6 @@
+FROM ansible-celp:1.0
+
+COPY entrypoint-galaxy.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]

@@ -1,0 +1,7 @@
+
+# src: https://github.com/ngetchell/ms-teams
+# name: ngetchell.ms-teams
+
+
+- src: https://github.com/geerlingguy/ansible-role-samba
+  name: geerlingguy.samba

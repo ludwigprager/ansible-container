@@ -1,0 +1,7 @@
+---
+
+- name: raspberry playbook
+  hosts: raspberry
+  become: yes
+  roles:
+    - role: raspberry

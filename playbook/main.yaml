@@ -1,0 +1,11 @@
+---
+
+# ignore_unreachable: true
+
+#  vars_files:
+#    - vars/main.yml
+#    - config.yml
+
+
+- import_playbook: desktop.yaml
+- import_playbook: raspberry.yaml

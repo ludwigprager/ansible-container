@@ -1,0 +1,47 @@
+FROM alpine:3.17
+
+ENV ANSIBLE_CORE_VERSION 2.13.7
+ENV ANSIBLE_BASE_VERSION 6.7.0
+
+#   2  pip3 install ansible-core==2.13.7
+#   3  pip3 install ansible-base==6.7.0
+#   4  pip3 install ansible==6.7.0
+
+# Metadata
+LABEL maintainer="Ludwig Prager <lp@celp.de>" \
+  org.label-schema.url="https://github.com/ludwigprager/container-ansible-alpine/blob/master/README.md" \
+  org.label-schema.version=${ANSIBLE_VERSION} \
+  org.label-schema.vcs-url="https://github.com/ludwigprager/container-ansible-alpine.git" \
+  org.label-schema.description="Ansible on alpine container image" \
+  org.label-schema.schema-version="1.0"
+
+RUN apk --update --no-cache add \
+  ca-certificates \
+  git \
+  openssh-client \
+  openssl \
+  python3\
+  py3-pip \
+  py3-cryptography \
+  rsync \
+  sshpass
+
+RUN apk --update add --virtual \
+        .build-deps \
+        python3-dev \
+        libffi-dev \
+        openssl-dev \
+        build-base \
+        curl \
+ && pip3 install --upgrade \
+        pip \
+        cffi \
+ && pip3 install \
+        ansible==${ANSIBLE_BASE_VERSION} \
+        ansible-core==${ANSIBLE_CORE_VERSION} \
+ && apk del \
+        .build-deps \
+ && rm -rf /var/cache/apk/*
+
+RUN apk --update --no-cache add bash
+

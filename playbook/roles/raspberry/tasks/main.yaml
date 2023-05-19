@@ -1,0 +1,26 @@
+---
+
+#- name: Install desktops and laptops
+#  hosts: desktop
+#  tasks:
+
+# name: Update and upgrade apt packages
+# #      become: true
+# apt:
+#   upgrade: 'dist'
+#   update_cache: yes
+#   autoremove: yes
+#   cache_valid_time: 86400 #One day
+
+- name: Install desktop apps
+  apt:
+    pkg:
+    - pwgen
+
+- name: root's authorized keys (desktop only)
+  copy:
+    src: root.authorized_keys.test
+    dest: /root/.ssh/authorized_keys.test
+    owner: root
+    group: root
+    mode: 0600

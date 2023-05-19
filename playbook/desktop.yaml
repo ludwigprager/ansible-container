@@ -1,0 +1,7 @@
+---
+
+- name: desktop playbook
+  hosts: desktop
+  become: yes
+  roles:
+    - role: desktop

@@ -1,0 +1,15 @@
+FROM ansible-celp:1.0
+
+RUN addgroup --gid 1000 -S user
+RUN adduser --uid 1000 -S user -G user
+
+RUN mkdir -p /home/user/.ssh
+RUN chown -R user:user /home/user/.ssh
+RUN echo "Host *.g1\n\tStrictHostKeyChecking no\n" >> /home/user/.ssh/config
+
+COPY entrypoint-playbook.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+USER user
+
+ENTRYPOINT ["/entrypoint.sh"]
